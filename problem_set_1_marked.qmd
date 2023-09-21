@@ -1,0 +1,156 @@
+---
+title: "Problem Set 1 - Ryan"
+subtitle: "Due date: 18 September"
+format: 
+  html:
+    self-contained: true
+editor: visual
+execute: 
+  echo: true
+---
+
+Please upload your completed assignment to the ELMs course site (under the assignments menu). Remember to include an annotated script file for all work with R and show your math for all other problems (if applicable, or necessary). Please also upload your completed assignment to the Github repository that you have shared with us. *We should be able to run your script with no errors.*
+
+**Total points: 25**
+
+::: {.callout-tip title="HG comments"}
+Well done. 22/25
+:::
+
+## Question 1
+
+*Points: 5*
+
+::: {.callout-tip title="HG comments"}
+5/5
+:::
+
+Using the `gss` dataset (which has survey data with the individual respondent as the unit of analysis), create a frequency distribution and bar chart for each of the following variables: `degree` and `partyid_3`. Describe the distribution of each variable in detail.
+
+::: callout-note
+The `gss` dataset can be found in `poliscidata::gss`. Take a look at `?gss` to see what these variables measure.
+:::
+
+```{r}
+library("poliscidata")
+
+degree_freq <- table(gss$degree)
+
+barplot(degree_freq, main="Frequency Distribution of Education Level (degree)", xlab="Education Level", ylab="Frequency")
+
+party_freq <- table(gss$partyid_3)
+
+barplot(party_freq, main="Frequency Distribution of Political Party Affiliation (partyid_3)", xlab="Party Affiliation", ylab="Frequency")
+```
+
+::: {.callout-tip title="HG comments"}
+Make sure to check your rendered document before submitting. Your frequency distributions haven't printed. You need to call them explicitly. For example: 
+
+```{r}
+degree_freq <- table(gss$degree) # This assigns your freq dist to this object
+degree_freq # This calls that object to be printed
+```
+:::
+
+The bar chart displaying the frequency distribution of education level shows that HS degrees are most common and junior college degrees are least common. The distribution is skewed, with a unimodal, and HS degree can be viewed as an outlier.
+
+The bar chart displaying the frequency distribution of political party affiliation shows that Ind is the most common and Rep is the least common. The distribution is symmetric, unimodal, and no outliers present.
+
+## Question 2
+
+Examine the following vector of (fake) student IQ test scores:
+
+```{r}
+iq <- c(
+  145, 139, 126, 122, 125, 130, 96, 110, 118, 118, 101, 142, 134, 124, 112, 109, 
+  134, 113, 81, 113, 123, 94, 100, 136, 109, 131, 117, 110, 127, 124, 106, 124, 
+  115, 133, 116, 102, 127, 117, 109, 137, 117, 90, 103, 114, 139, 101, 122, 105, 
+  97, 89, 102, 108, 110, 128, 114, 112, 114, 102, 82, 101
+)
+```
+
+### Part A
+
+*Points: 5*
+
+::: {.callout-tip title="HG comments"}
+4/5
+:::
+
+Find the five-number summary, mean, and standard deviation for these data. Also, are there any suspected outliers in the distribution? If so, what are they and how do you know?
+
+```{r}
+fivenum(iq)
+
+mean(iq)
+
+sd(iq)
+```
+
+There are no outliers because the number set provides scores within a 64 point range, with all the scores in between filling out consistently. The range of 81 to 145 compared with the other scores does not fall well above/below the data.
+
+::: {.callout-tip title="HG comments"}
+I would recommend against using the range of the whole distribution to check for outliers. This is influenced by those outliers. A more common method of quickly identifying outliers is to check whether any values are large than 1.5 times the interquartile range from the median value or are smaller than 1.5 times the interquartile range from the median value. A boxplot will show you this range. 
+:::
+
+### Part B
+
+*Points: 5*
+
+::: {.callout-tip title="HG comments"}
+4/5
+:::
+
+In large populations, IQ scores are standardized to have a mean of 100 and a standard deviation of 15. In what way does the distribution among these students differ from the overall population?
+
+The distribution among these students differs from the overall population because the mean is about 15 IQ points above 100, however the standard deviation is similar as its displayed 0.2 below 15.
+
+::: {.callout-tip title="HG comments"}
+What does a similar SD demonstrate about the two distributions? They are equivalently spread out around their means. 
+:::
+
+## Question 3
+
+*Points: 5*
+
+::: {.callout-tip title="HG comments"}
+5/5
+:::
+
+A polling firm is interested in determining how different characteristics of an individual affect vote choice. They record the following characteristics for each survey respondent - race, age, household income, and party affiliation. What "type" of variable does each characteristic most likely represent?
+
+Race = Categorical and nominal Variable , Age = Quantitative and continous Variable, Household Income = Quantitative and continous, Variable Party Affiliation = Categorical and nominal Variable
+
+## Question 4
+
+*Points: 5*
+
+::: {.callout-tip title="HG comments"}
+4/5
+:::
+
+Using the `states` dataset (the unit of analysis is each U.S. state), generate a box plot and density curve for each of the `vep12_turnout` and `cig_tax12` variables. Describe the distribution of each variable in detail.
+
+::: callout-note
+The `states` data set can be found in `poliscidata::states`. Take a look at `?states` to see what these variables measure.
+:::
+
+```{r}
+library(poliscidata) 
+library(ggplot2) 
+library(dplyr)
+
+ggplot(states, aes(y = vep12_turnout)) + geom_boxplot() + labs(title = "Box Plot of vep12_turnout")
+
+ggplot(states, aes(x = vep12_turnout)) + geom_density(fill = "gray") + labs(title = "Density Curve of vep12_turnout")
+
+ggplot(states, aes(y = cig_tax12)) + geom_boxplot() + labs(title = "Box Plot of cig_tax12")
+
+ggplot(states, aes(x = cig_tax12)) + geom_density(fill = "gray") + labs(title = "Density Curve of cig_tax12")
+```
+
+The box plot of `vep12_turnout` shows a symmetric distribution with no outliers. The density curve of `vep12_turnout` shows a symmetric distribution with no outliers. The box plot of `cig_tax12` shows a symmetric distribution with no outliers. The density curve of `cig_tax12` shows a right skewed distribution with no outliers.
+
+::: {.callout-tip title="HG comments"}
+Almost! The boxplot of `cig_tax12` shows evidence of one outlier at a value greater than 4. 
+:::
