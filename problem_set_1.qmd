@@ -19,9 +19,19 @@ Please upload your completed assignment to the ELMs course site (under the assig
 
 Using the `gss` dataset (which has survey data with the individual respondent as the unit of analysis), create a frequency distribution and bar chart for each of the following variables: `degree` and `partyid_3`. Describe the distribution of each variable in detail.
 
-::: callout-note
-The `gss` dataset can be found in `poliscidata::gss`. Take a look at `?gss` to see what these variables measure.
-:::
+install.packages("poliscidata")
+
+library("poliscidata")
+
+degree_freq \<- table(gss\$degree)
+
+barplot(degree_freq, main="Frequency Distribution of Education Level (degree)", xlab="Education Level", ylab="Frequency")
+
+party_freq \<- table(gss\$partyid_3)
+
+barplot(party_freq, main="Frequency Distribution of Political Party Affiliation (partyid_3)", xlab="Party Affiliation", ylab="Frequency")
+
+::: callout-note The `gss` dataset can be found in `poliscidata::gss`. Take a look at `?gss` to see what these variables measure. :::
 
 ## Question 2
 
@@ -42,6 +52,14 @@ iq <- c(
 
 Find the five-number summary, mean, and standard deviation for these data. Also, are there any suspected outliers in the distribution? If so, what are they and how do you know?
 
+fivenum(iq)
+
+mean(iq)
+
+sd(iq)
+
+There are no outliers because the number set provides scores within a 64 point range, with all the scores in between filling out consistently. The range of 81 to 145 compared with the other scores does not fall well above/below the data.
+
 ### Part B
 
 *Points: 5*
@@ -54,11 +72,23 @@ In large populations, IQ scores are standardized to have a mean of 100 and a sta
 
 A polling firm is interested in determining how different characteristics of an individual affect vote choice. They record the following characteristics for each survey respondent - race, age, household income, and party affiliation. What "type" of variable does each characteristic most likely represent?
 
+Race = Categorical Variable Age = Quantitative Variable Household Income = Quantitative Variable Party Affiliation = Categorical Variable
+
 ## Question 4
 
 *Points: 5*
 
 Using the `states` dataset (the unit of analysis is each U.S. state), generate a box plot and density curve for each of the `vep12_turnout` and `cig_tax12` variables. Describe the distribution of each variable in detail.
+
+library(poliscidata) library(ggplot2) library(dplyr)
+
+ggplot(states, aes(y = vep12_turnout)) + geom_boxplot() + labs(title = "Box Plot of vep12_turnout")
+
+ggplot(states, aes(x = vep12_turnout)) + geom_density(fill = "gray") + labs(title = "Density Curve of vep12_turnout")
+
+ggplot(states, aes(y = cig_tax12)) + geom_boxplot() + labs(title = "Box Plot of cig_tax12")
+
+ggplot(states, aes(x = cig_tax12)) + geom_density(fill = "gray") + labs(title = "Density Curve of cig_tax12")
 
 ::: callout-note
 The `states` data set can be found in `poliscidata::states`. Take a look at `?states` to see what these variables measure.
