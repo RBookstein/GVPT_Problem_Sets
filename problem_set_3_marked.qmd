@@ -1,0 +1,131 @@
+---
+title: "Problem Set 3"
+subtitle: "Due date: 2 October"
+format: 
+  html:
+    self-contained: true
+toc: true
+editor: visual
+execute: 
+  echo: true
+---
+
+Please upload your completed assignment to the ELMs course site (under the assignments menu). Remember to include an annotated script file for all work with R and show your math for all other problems (if applicable, or necessary). Please also upload your completed assignment to the Github repository that you have shared with us. *We should be able to run your script with no errors.*
+
+**Total points: 30**
+
+::: {.callout-tip title="HG comments"}
+25/30
+:::
+
+## Question 1
+
+*Points: 10*
+
+::: {.callout-tip title="HG comments"}
+8/10
+:::
+
+Suppose I want to examine the hypothesis that consuming political news coverage from cable network channels (e.g., CNN, MSNBC, Fox News, etc.) causes citizens to have less trust in government than if they were to consume it from mainstream print media (e.g., New York Times, Wall Street Journal, etc.). What is more, suppose that I believe that this effect is greatest among "young" citizens. Design the contours of an experiment to test this proposition (and be sure to sketch the key elements of the experimental design). Second, briefly describe any significant shortcomings that the experimental design might have.
+
+To effectively conduct this experiment you are going to have to obtain the ability to sample a wide range of individuals based on their age. From there, you need to determine the types of political news media these individuals consume.
+
+Continuing on with the experiment you need to determine an organization to go through to find a random sample, as survey respondents may not always engage with the study to effectively obtain a large sample you will need to send out a few thousand requests with the hopes of securing a few hundred respondents.
+
+After obtaining a few hundred respondents you will assign the individuals a control and treatment category based on what is determined as "young": in this case, we will say 18-35 is young and 36 plus is older.
+
+::: {.callout-tip title="HG comments"}
+What do you mean by this? Have you split your control and treatments into young and old? I am looking for random allocation. 
+:::
+
+For data collection, you will have the respondents consume mainstream print media as the control and political news coverage from cable network channels as the treatment. In this instance the independent variable is how the individual consumes news media and the dependent variable is their trust in government.
+
+Some potential shortcomings that might occur in this experiment are the lack of individuals in the study, simply the number of respondents may not be representative of the overall population. Another is individuals establishing a trend in the questions/news media and not being fully truthful in their answers.
+
+## Question 2
+
+*Points: 10*
+
+::: {.callout-tip title="HG comments"}
+7/10
+:::
+
+Below are four hypothetical research designs to determine the effects of democratic governance on the funding of educational institutions. Briefly evaluate each sampling design in terms of its: (1) sampling variability; and, (2) sources of potential bias.
+
+A.  A sample of educational funding levels for every country in Europe for each of the last 100 years.
+
+The sample variability is low because it is just looking at countries in Europe. Because of the small amount of countries being sampled this can be cause for potential bias. The sample being taken from countries in the same continent can result in similar funding across each country.
+
+B.  A sample of educational funding levels in five randomly picked countries drawn from the global population of countries for each of the last 10 years.
+
+The sample variability is relatively high because of the randomization of the countries selected. 
+
+::: {.callout-tip title="HG comments"}
+Although sample variability is high, it is not because of randomization. It is because of the small sample size *and* diversity of the population *and* randomization. 
+:::
+
+The potential bias is not as high because the selection is random rather than five countries one one continent/region.
+
+C.  A survey of educational administrators that yields responses that allow for a comparison of educational funding levels in Russia and the United States for the six-year period from 2010 to 2015.
+
+The sample variability is low because it is just looking two countries over a six year period, as well as the fact it is a survey of educational administrators rather than the funding levels. The potential bias in this survey is relevant to several aspects, first being the use of educational administrators. They can have response bias/not provide accurate answers as compared to looking at raw funding numbers.
+
+D.  A sample of 75 randomly selected countries' educational funding levels for each of the past 25 years.
+
+The sample variability is high because of the amount of countries selected being 75, the randomization of their selection, and looking at a period of 25 years. 
+
+::: {.callout-tip title="HG comments"}
+The sample variability will be low because of the large relative sample size. 
+:::
+
+The potential bias in the situation is low because the high amount of countries selected around the world as well as it being random. This bias is lower because of the random selection which will allow for counties from around the world instead of similar countries.
+
+## Question 3
+
+*Points: 10*
+
+::: {.callout-tip title="HG comments"}
+10/10  
+:::
+
+Using the `hanmerKalkanANES` dataset (posted on ELMs), construct a cross-tab with `presvote` (dichotomous variable coded with a value label) as the dependent variable and `ageCategorical` (1 = 18-30; 2 = 31-40; 3 = 41-50; 4 = 51-60; and 5 = 61-over) as the independent variable. Create a table with the cross-tab results and interpret them -- i.e., what is the apparent association, if any, between age and U.S. presidential vote in 2004?
+
+::: {.callout-tip title="HG comments"}
+Please avoid hard coding file paths into your scripts (for example: `~/Documents/GVPT_Problem_Sets/hanmerKalkanANES.RData`). This causes an error when someone else tries to render your script. Instead, use `here::here()`.  
+:::
+
+```{r}
+library(tidyverse)
+library(modelsummary)
+library(dplyr)
+
+load(here::here("hanmerKalkanANES.RData"))
+
+x <- x |>
+  mutate(ageCategorical = case_when(
+    18<=age & age<=30 ~ "1",
+    31<=age & age<=40 ~ "2",
+    41<=age & age<=50 ~ "3",
+    51<=age & age<=60 ~ "4",
+    61<=age ~ "5"
+  ))
+summary(x$age)
+
+datasummary_crosstab(presvote ~ ageCategorical, data = x)
+
+x |>
+  summarize(prob = sum(ageCategorical == "3" & presvote == "Kerry", na.rm = TRUE)/sum
+(ageCategorical == "3", na.rm = TRUE))
+
+x |>
+  summarize(prob = sum(ageCategorical == "3" & presvote == "Bush", na.rm = TRUE)/sum
+(ageCategorical == "3", na.rm = TRUE))
+```
+
+The interpretation of the cross tab to see the association between age and presidential votes in 2004 would show that individuals aged 61 plus were more likely to vote for Kerry and individuals 51-60 were more likely to vote for Bush.
+
+Next, what is:
+
+A.  The conditional distribution of respondents who are 41-50 that voted for Kerry? The answer is: 0.4285714
+
+B.  The conditional distribution of respondents who are 41-50 that voted for Bush? The answer is: 0.5714286
