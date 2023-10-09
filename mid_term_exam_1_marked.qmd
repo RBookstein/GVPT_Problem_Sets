@@ -1,0 +1,398 @@
+---
+title: "Mid-Term Exam #1"
+subtitle: "Due date: 6 October (11:59 pm)"
+format: 
+  html: 
+    self-contained: true
+    toc: true
+editor: visual
+execute: 
+  message: false
+  warning: false
+---
+
+library(tidyverse) library(poliscidata) library(wbstats) library(janitor) library(skimr) library(countrycode) library(ggridges)
+
+Please read all of the questions and tables carefully and follow all instructions. Each question has an allotted point value. Be as thorough and specific as possible; extra calculations and incorrect information, even in the presence of correct information, will result in point deductions. Be sure to show all formulas and all necessary work to answer the questions. You may upload your completed exam to the Elms course site (attach to Exam #1).
+
+::: callout-note
+While this is an open-note exam, you are not to receive assistance from anyone else. As usual, the Honor Code applies.
+:::
+
+::: {.callout-tip title="HG comments"}
+24.5/35
+:::
+
+```{r}
+library(poliscidata) 
+library(ggplot2) 
+library(dplyr)
+library(stargazer)
+library(broom)
+library(modelsummary)
+```
+
+## Conceptual Questions
+
+**Total points: 15**
+
+Please include all work (and computations) necessary to answer the questions.
+
+### Question 1
+
+*1 point*
+
+::: {.callout-tip title="HG comments"}
+1/1
+:::
+
+The following is a list of observed values, ordered from lowest to highest: 62, 63, 63, 64, 66, 67, 68, 68, 69, 70, 71, 72, 72, 74, 75, 76. What is an accurate five-number summary for these data?
+
+```{r}
+data <- c(62, 63, 63, 64, 66, 67, 68, 68, 69, 70, 71, 72, 72, 74, 75, 76)
+fivenum(data)
+```
+
+### Question 2
+
+*1 point*
+
+::: {.callout-tip title="HG comments"}
+1/1
+:::
+
+Suppose that the median, Q1, and Q3 from question #1 is an accurate representation of a second (hypothetical) distribution. Based on what this information tells you about this second distribution, which of the following numbers would be a suspected outlier?
+
+A.  76
+B.  62
+C.  83
+D.  Both (A) and (C)
+E.  All of the above
+F.  None of the above, or cannot be determined from the information given.
+
+The answer is C. 83.
+
+### Question 3
+
+*1 point*
+
+::: {.callout-tip title="HG comments"}
+0.5/1
+:::
+
+There is a group of three children with the following ages: 3, 4, and 5. If a 6-year-old child joins the group, what will happen to the mean and standard deviation of the group's age?
+
+The mean of the group of children is determined based on adding all the numbers together then dividing by the total amount. In the original ages of children the mean would be 4 and with the addition of the 6 year old the mean would now be 4.5, thus the addition of the 6 year old creates a 0.5 increase to the mean.
+
+With the original set of ages, the standard deviation is 0.82. With the addition of the 6 year old to the set of ages the standard deviation is 1.12. Thus, the addition of the 6 year old results in a 0.3 increase in the standard deviation.
+
+::: {.callout-tip title="HG comments"}
+The original SD is `r sd(c(3, 4, 5))`. The new SD is `r sd(c(3, 4, 5, 6)) |> round(3)`. 
+:::
+
+### Question 4
+
+*1 point*
+
+::: {.callout-tip title="HG comments"}
+1/1
+:::
+
+If I estimate an OLS regression and obtain a $R^2$ of 0.40 where the Total Sum of Squares of 4,150, what does the Residual Sum of Squares equal?
+
+The Residual Sum of Squares equal 2,490.
+
+### Question 5
+
+*1 point*
+
+::: {.callout-tip title="HG comments"}
+1/1
+:::
+
+The distribution of some variable has a median that is smaller than its mean. Which of the following statements about the distribution's shape is most consistent with this information?
+
+A.  The shape of the distribution would be symmetric
+B.  The shape of the distribution would be skewed left
+C.  The shape of the distribution would be skewed right
+D.  None of the above -- cannot be determined from the information given.
+
+The answer is C. The shape of the distribution would be skewed right.
+
+### Question 6
+
+*1 point*
+
+::: {.callout-tip title="HG comments"}
+0.5/1
+:::
+
+Suppose I want to test the hypothesis that the U.S. public's approval of the president is higher when people have more positive perceptions of the U.S. economy. To test this hypothesis, I conduct a survey of individual-level attitudes. Which of the following research design strategies should I expect to exhibit both the greatest sampling variability (in the context of repeated sampling) and the lowest degree of expected sampling bias?
+
+A.  A random sample of 1,200 people from a list of all U.S. residential addresses
+B.  A random sample of 600 people from a list of all registered students at the University of Maryland
+C.  A random sample of 1,200 people from a list of all registered students at the University of Maryland
+D.  A random sample of 600 people from a list of all U.S. residential addresses.
+
+The answer is A. A random sample of 1,200 people from a list of all U.S residential addresses.
+
+::: {.callout-tip title="HG comments"}
+Sampling variability increases as your sample size decreases, holding all else constant. Remember, it measures how spread out the sample statistic is from multiple repeated samples from your population. Higher sampling variability means more spread out sample statistics. Therefore, the correct answer is D.
+:::
+
+### Question 7
+
+*1 point*
+
+::: {.callout-tip title="HG comments"}
+0.5/1
+:::
+
+The median age of ten people in a room is 50 years. One 40-year-old person leaves the room. What can we expect will happen to the median age for the remaining nine people? Do we know the median age of those nine people; if so, what is it?
+
+The median age of ten people in a room is determined based on the middle number of the set of ages. Thus, if one 40 year old leaves the room the median is still 50 and will not change because 50 is in the middle.
+
+::: {.callout-tip title="HG comments"}
+The median age of the group will either stay the same or increase. If no one or one person in the group is 50 years old, the median age of the group will increase. For example:
+
+```{r}
+
+age_dist <- c(40, 42, 44, 46, 48, 52, 54, 56, 58, 60)
+
+median(age_dist)
+```
+
+Removing the 40 year old increases the median to the next age above 50 years old in the group:
+
+```{r}
+
+new_age_dist <- c(42, 44, 46, 48, 52, 54, 56, 58, 60)
+
+median(new_age_dist)
+```
+
+If; however, two or more people in the group are 50 years old, the median will remain at 50. For example:
+
+```{r}
+
+age_dist <- c(40, 42, 44, 46, 50, 50, 54, 56, 58, 60)
+
+median(age_dist)
+```
+
+Removing the 40 year old increases the median to the next age above 50 years old in the group (which is 50 years old):
+
+```{r}
+
+new_age_dist <- c(42, 44, 46, 50, 50, 54, 56, 58, 60)
+
+median(new_age_dist)
+```
+:::
+
+### Question 8
+
+*1 point*
+
+::: {.callout-tip title="HG comments"}
+1/1
+:::
+
+The mean age of ten people in a room is 50 years. One 70-years-old person leaves the room. What can we expect will happen to the mean age for the remaining nine people? Do we know the mean age of those nine people; if so, what is it?
+
+To determine the mean age of ten people in the room you need to add the amount of ages and divide by the total amount of people. If a 70 year old leaves the room then the mean will change because it will be calculated based on 9 total people. We can determine the updated mean by sum of ages minues 70 then divided by 9. So the updated mean would be 47.78 years old.
+
+### Question 9
+
+*1 point*
+
+::: {.callout-tip title="HG comments"}
+1/1
+:::
+
+Which of the following sets of numbers has the largest standard deviation?
+
+A.  2, 4, 6, 8
+B.  7, 8, 9, 10
+C.  5, 5, 5, 5
+D.  1, 2, 3, 5
+
+The answer is A. 2, 4, 6, 8.
+
+### Question 10
+
+*6 points*
+
+::: {.callout-tip title="HG comments"}
+4/6
+:::
+
+I hypothesize that people with greater social trust are more likely to turnout to vote in American national elections. I use data from the 2012 General Social Survey to examine how respondents' self-reported level of social trust might be correlated with their decisions to vote. In particular, I use the `social_trust` variable (i.e., a 4-point ordinal indicator of social trust -- larger values reflect greater trust) and the `vote08` variable (i.e., a dichotomous indicator where a `1` indicates that the respondent voted) to test my hypothesis.
+
+Complete the cross-tab below so that you may properly evaluate my hypothesis. Briefly interpret the results of your completed cross-tab. Do the data suggest that social trust is related to voting in 2008? Be sure to explain the nature of the relationship (or lack thereof, if relevant).
+
+The total for individuals who voted `1` in `vote08` is 883. The total for individuals who did not vote `0` in `vote08` is 316. The total for `0` social trust is 394. The total for `1` social trust is 287. The total for `2` social trust is 248. The total for `3` social trust is 270.
+
+27.1 percent of individuals who voted in the 2008 election had very high `3` social trust. 21.7 percent of individuals who voted in 2008 scored a `2` of social trust. 21.9 percent of individuals who voted in 2008 scored a `1` of social trust. 29.1 percent of individuals who voted in the 2008 election have a low `0` social trust.
+
+According to the cross tab, the highest percent of individuals who voted in the 2008 election had low social trust, so the hypothesis is not supported by the data.
+
+::: callout-note
+Table entries represent raw counts of observations within each cell.
+:::
+
+![](img/mid_term_exam.png)
+
+::: {.callout-tip title="HG comments"}
+To test this hypothesis, we need to look within levels of social trust. What proportion of people within each level of social trust voted? How do these compare? Here's what I recommend: 
+
+```{r}
+datasummary_crosstab(social_trust ~ voted08, data = tidyr::drop_na(gss, social_trust, voted08))
+```
+
+Do the data suggest that social trust is related to voting in 2008? Across all levels of social trust, a greater proportion of people voted than did not vote in the 2008 presidential election. However, the proportion of people who did vote increases with their level of social trust. Only 65.2% of people with the lowest level of social trust voted in this election. 88.9% of people with the highest level of social trust voted in this election. This suggests that as a individual's level of social trust increases, so too does the probability that they will vote.
+
+:::
+
+## Applied Questions
+
+Please include your R code. All data sets referenced below are available through the `poliscidata` R-package.
+
+**Total points: 20**
+
+### Question 1
+
+*10 points total*
+
+::: {.callout-tip title="HG comments"}
+4.5/10
+:::
+
+Use the `states` dataset (the U.S. state is the unit of analysis) and estimate a bivariate regression where the size of a state's urban population (`urban`) explains variation in abortion attitudes (`permit`) and report the results in a professionally formatted table. The variable `permit` measures the percentage (on a 0-to-100 scale) of a state's population that says abortion should always be allowed. The variable `urban` measures the percentage (on a 0-to-100 scale) of a state's population in an urban area. Answer the following questions.
+
+::: {.callout-tip title="HG comments"}
+Please make sure to check your rendered output. Printing the dataset makes your response difficult to read. 
+:::
+
+```{r}
+data(states)
+#head(states)
+
+model <- lm(permit ~ urban, data = states)
+
+stargazer(model, title = "Bivariate Regression Results", align = TRUE, type = "text")
+```
+
+::: {.callout-tip title="HG comments"}
+Make sure to include meaningful variable labels in your professionally formatted tables. `urban` is not meaningful to your readers. 
+:::
+
+A.  Interpret the effect of the independent variable on the dependent variable. *2 points*
+
+::: {.callout-tip title="HG comments"}
+0/2
+:::
+
+The effect of the `permit` on `urban` is seen in the regression table above. There is a 0.373\*\*\* relationship, meaning there is a statistically significant relationship between urban populations and attitudes on abortion.
+
+::: {.callout-tip title="HG comments"}
+Don't worry about statistical significance at this stage. Is the relationship positive? When you increase the percentage of a state's urban population by one percentage point, how much do we expect the percentage of that state's population who believe abortions should always be permitted to increase by, on average?
+:::
+
+B.  Interpret the estimate of the intercept. Is it substantively meaningful to interpret this coefficient on its own? Explain why, or why not. *2 points*
+
+::: {.callout-tip title="HG comments"}
+1/2
+:::
+
+The estimate of the intercept can be seen through the data above. The intercept represents the estimated percentage of a states population that believes abortion should be allowed when the urban population is non existent. It may not be substantively meaningful to interpret this coefficient on its own because the relationship between abortion attitudes and non urban populations is not strong.
+
+::: {.callout-tip title="HG comments"}
+This is not substantively meaningful because we do not have and are unlikely to ever have a state with no urban population. 
+:::
+
+C.  Compute the residual sum of squares for the following two observations combined: (1) California; and (2) Texas. *2 points*
+
+::: {.callout-tip title="HG comments"}
+1.5/2
+:::
+
+```{r}
+stat <- states |>
+  filter(stateid%in%c("CA   ", "TX    ")) |>
+  select(stateid, urban, permit)
+stat
+  
+augment(model) |>  
+ summarise(sum(.resid^2))
+```
+
+::: {.callout-tip title="HG comments"}
+You have not restricted your predictions to CA and TX. This is the RSS for all observations. The question asks for the combined RSS for only those two states. 
+:::
+
+D.  How well does the model fit the data (i.e., how well can we explain abortion attitudes with this model?) *2 points*
+
+::: {.callout-tip title="HG comments"}
+0/2
+:::
+
+The model fits the data pretty well, we are able to see that there is a significant relationship between a states urban population and attitudes of abortion. The regression table allows us to see the siginifance between the relationship.
+
+::: {.callout-tip title="HG comments"}
+Again, don't worry about the statistical significance of the independent variables. This question asks about overall model fit. You can use values such as the RSS or $R^2$ to assist you. 
+
+For example, using the $R^2$ value: Changes to the percentage of a state’s population that lives in urban areas only explain 27% of variation in the percentage of those states’ population who believe that abortions should always be permitted. This suggests that the model does not fit the data well.
+:::
+
+E.  Is the relationship between the independent and dependent variable causal? Why or why not? *2 points*
+
+::: {.callout-tip title="HG comments"}
+2/2
+:::
+
+Because of the limits in data that we have, it can not be concluded that there is a causal relationship between `urban` and `permit`. Causuality would need to be used in a different type of analysis which was not produced. Thus, We can not determine the direction of the relationship through a bivariate regression table.
+
+### Question 2
+
+*5 points*
+
+::: {.callout-tip title="HG comments"}
+5/5
+:::
+
+Use the `gss` data set (the unit of analysis is the individual survey respondent) and evaluate the hypothesis that Republicans had less confidence in the executive branch of the federal government than Democrats in 2016. Use the following variables: `partyid` is a 7-category ordinal indicator (0 = Strong Democrat; 1 = Weak Democrat; 2 = Independent Democrat; 3 = Independent; 4 = Independent Republican; 5 = Weak Republican; 6 = Strong Republican); and `confed` is a 3-category ordinal indicator (1 = "a great deal" of confidence; 2 = "only some;" 3 = "hardly any"). Do the data support the hypothesis and how do you know?
+
+```{r}
+datasummary_crosstab(partyid ~ confed, data = gss)
+```
+
+As seen in the cross tab above, the hypothesis that Republicans had less confidence in the executive branch of the Federal government than Democrats. Numbers shows that 41.1 percent of strong Republicans had hardly any trust in the executive branch compared 14.9 percent of strong Democrats. Among all levels of Republican affiliation, hardly any trust was most present among them comapared to all levels of Demcocratic affiliation.
+
+### Question 3
+
+*5 points*
+
+::: {.callout-tip title="HG comments"}
+3.5/5
+:::
+
+Use the `world` dataset and evaluate the distributions for each the following variables: `literacy` (a country's literacy rate) and `free_overall` (a country's degree of economic freedom). Be sure to visually display each distribution and thoroughly describe their key attributes. Next, evaluate the bivariate relationship between the two variables -- i.e., is economic freedom associated with literacy? If so, what is the nature of the relationship and how do you know? In doing so, be sure to use proper descriptive tools (and thus do not rely simply on a regression output).
+
+```{r}
+scatter_plot <- ggplot(world, aes(x = literacy, y = free_overall)) + geom_point() + labs(x = "Economic Freedom Score", y = "Literacy Rate") + ggtitle("Scatterplot: Economic Freedom vs. Literacy Rate")
+
+print(scatter_plot)
+
+cor(world$literacy, world$free_overall, use = "complete.obs")
+```
+
+::: {.callout-tip title="HG comments"}
+The question asks you to assess the distribution of these two variables individually. What does `literacy` look like? What does `free_overall` look like? 
+:::
+
+The scatter plot above shows the relationship between the economic freedom and literacy rate of countries in the `world` dataset. The data shows for several the higher amount of economic freedom, the higher amount of literacy. However, there are countries with high amount economic freedom and low literacy rates. There are no outliers present in the scatter plot. The correlation between economic freedom and literacy rates is moderate at 0.4332167. Based on the scatter plot and correlation rate it can be concluded that there is a relationship between high economic freedom and high literacy rates.
+
+::: {.callout-tip title="HG comments"}
+Your answer could also benefit from a linear regression. That would allow you to determine the slight positive relationship between these variables. 
+:::
