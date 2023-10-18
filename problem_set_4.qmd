@@ -20,11 +20,15 @@ Please upload your completed assignment to the ELMs course site (under the assig
 
 Suppose I am playing poker with a regular deck of 52 cards. I have three cards in my hand, one of which is a king. What is the probability that the next two cards I draw will both be kings?
 
+Playing with a regular deck of 52 cards means that if I have drawn three cards one of which is a king, there are 49 cards left and three kings remaining in the deck. The probability of drawing a king as your first selection is 3/49 or 6.12 percent. After that, there are two kings and 48 cards left in the deck. Thus, the probability of drawing a king next is 2/48 or 4.16 percent. To then determine the probability of consecutively drawing a king we need to multiply the probabilities of both happening together. 3/49 * 2/48 which equals 1/392. Thus, the probability that the next two cards drawn will both be kings is 1/392, 0.00255, or 0.255 percent.
+
 ## Question 2
 
 *Points: 5*
 
 A survey of 1,500 randomly selected individuals reveals that 46% of them have a college degree and that 31% of them have a gun in their house. If you were to assume that college graduation and gun ownership are independent of one another, what is the probability that an individual is both a college graduate and does not have a gun in his or her house?
+
+To determine the probability that an individual is both a college graduate and does not have a gun in their home we need to determine the percent of respondents represent each. 46% of the sample have college degree and 69% do not have a gun in their home, 31% of respondents have a gun and 100-31 equals 69. From there we can multiple the percentages together, 0.46 * 0.69 to get there probability of both which is 0.3174 or 31.74%.
 
 ## Question 3
 
@@ -32,14 +36,20 @@ A survey of 1,500 randomly selected individuals reveals that 46% of them have a 
 
 I roll a fair six-sided dice and I get a number greater than three. What is the probability that the next two dice rolls will also generate numbers greater than three?
 
+The probability of each dice roll is independent from each other. Thus to determine the probability of the next two dice rolls that are greater than three we need to simply determine the probability of rolling any number. The probability of rolling a number greater than 3 is 3/6 or 1/2, thus to determine the probability of the next roll being greater than 3 you must multiply the probabilities together. 1/2 times 1/2 equals 1/4 or 25 percent. 
+
 ## Question 4
 
 *Points: 10*
 
 Assume that in the United States, 15% of people are smokers and, of smokers, 60% smoke at least one pack a day. Among those who smoke at least a pack a day, 60% will develop lung cancer at some point in their lives while, in the rest of the population (which includes smokers who smoke less than a pack a day and non-smokers), only 10% will. What is the probability that a person who develops lung cancer was a smoker who smoked at least a pack a day?
 
+To determine the probability that a person who develops lung cancer was a smoker who smoked at least a pack a day you must multiply the percentage of individuals who smoke a pack a day by the percentage of people who are smokers. 0.6 times .15  is .09 add that to the equation (.10 times 91 -0.15) and we get 0.17. Putting this number into the equation .60 times .15 / .175 we get .5143 to give us the probability a person develops lung cancer was a smoker who smoked at least a pack a day is 51.43 percent. 
+
 ## Question 5
 
 *Points: 5*
 
 Assume that in the world, 60% of countries are democracies and 80% of countries have ratified the Rome Statute for the International Criminal Court. Assume further that 90% of democracies have ratified the Rome Accords. What is the probability that a country is either a democracy or has ratified the Rome Accords?
+
+To determine that a country is either a democracy or ratified the Rome Accords we must add the probability that a country is a democracy and the probability that a country has ratified the Rome Accords, which is  0.60 + 0.80 and equals 1.4.. We then need to multiply the probability of a country being a democracy by the probability that a democracy has ratified the Rome Accords, this equation is 0.60 * 0.90 which equals 0.54. We then subtract the answer from the first and second equations together to get an answer of 0.86. From there we can determine that the probability that a country is either a democracy or has ratified the Rome Accords is 0.86 or 86 percent. 
