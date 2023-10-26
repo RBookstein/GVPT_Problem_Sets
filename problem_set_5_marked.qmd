@@ -14,9 +14,17 @@ Please upload your completed assignment to the ELMs course site (under the assig
 
 **Total points: 25**
 
+```{r}
+library(scales)
+```
+
 ## Question 1
 
 *Total points: 6*
+
+::: {.callout-tip}
+4/6
+:::
 
 Use the data in the table below to answer the following questions.
 
@@ -36,6 +44,10 @@ tibble::tibble(
 
 *Points: 2*
 
+::: {.callout-tip}
+2/2
+:::
+
 What is the probability of being 25-30 or a non-voter?
 
 ```{r}
@@ -48,11 +60,15 @@ probability <- (ages_25_to_30 + non_voters) / total_sample
 probability
 ```
 
-From the math above, we find that the probability of being 25-30 or a non-voter is 0.37 or 37 percent. 
+From the math above, we find that the probability of being 25-30 or a non-voter is 0.37 or 37 percent.
 
 ### Part B
 
 *Points: 4*
+
+::: {.callout-tip}
+2/4
+:::
 
 Assuming a normal distribution, report the 95% confidence intervals for the percentage of 18-to-24-year-olds who did not vote, and then the percentage of 25-to-30-year-olds who did not vote.
 
@@ -75,15 +91,53 @@ list(CI_18_to_24 = CI_18_to_24, CI_25_to_30 = CI_25_to_30)
 
 ```
 
+::: {.callout-tip} 
+The probability that an individual is 18-to-24 and a non-voter is not conditional. Therefore, you look at the proportion of the whole population who meet those criteria.
+
+$$
+\hat{p} = Pr(18\ to\ 24 \& NV) = \frac{70}{1000} = 0.07 
+$$
+
+And: 
+
+$$
+n = 1000
+$$
+
+Therefore: 
+
+$$
+SE(\hat{p}) = \sqrt{\frac{0.07 * 0.93}{1000}} = 0.008068457
+$$
+
+The 95% confidence interval can be found:
+
+$$
+\hat{p} \pm 1.96*SE(\hat{p})
+$$
+
+Therefore, the 95% confidence interval for the percentage of 18-to-24-year-olds who did not vote is `r percent(0.07 - 1.96 * 0.008068457, accuracy = 0.01)` to `r percent(0.07 + 1.96 * 0.008068457, accuracy = 0.01)`.
+
+Using the same method, the 95% confidence intervals for the percentage of 25-to-30-year-olds who did not vote is `r percent(0.04 - 1.96*0.006196773, accuracy = 0.01)` to `r percent(0.04 + 1.96*0.006196773, accuracy = 0.01)`.
+:::
+
 ## Question 2
 
 *Total points:* *7*
+
+::: {.callout-tip}
+7/7
+:::
 
 Assume that the standard deviation for the population distribution of a state in which you want to conduct a poll is 200.
 
 ### Part A
 
 *Points: 3*
+
+::: {.callout-tip}
+3/3
+:::
 
 Calculate the spread of the sampling distribution for each of the following sample sizes: 1, 4, 25, 100, 250, 1000, 5,000, and 10,000.
 
@@ -104,15 +158,23 @@ spread
 
 *Points: 1*
 
+::: {.callout-tip}
+1/1
+:::
+
 Describe specifically how the variability of the sampling distribution changes as the sample size varies. Considering the expense of running a poll, which sample size do you think is most optimal if conducting the poll?
 
 The variability of the sample distribution changes as the standard error gets larger. The difference between 1 and 4 is 100, as the difference between 5000 and 10000 is less than one. As the sampling distribution gets larger, the difference between the standard error is smaller.
 
-Considering the expenses to run a poll it is unreasonable to say 10000 would be in our price range and that 100-less would not show an accurate picture. Thus, the sample distribution of 1000 would give us a low standard error but not as high amount of individuals to poll which means less costly. 
+Considering the expenses to run a poll it is unreasonable to say 10000 would be in our price range and that 100-less would not show an accurate picture. Thus, the sample distribution of 1000 would give us a low standard error but not as high amount of individuals to poll which means less costly.
 
 ### Part C
 
 *Points: 3*
+
+::: {.callout-tip}
+3/3
+:::
 
 Display your results graphically (using R) with the sample size on the x-axis and the standard error (of the sampling distribution) on the y-axis.
 
@@ -135,6 +197,10 @@ text(sample_sizes, standard_errors, labels = round(standard_errors, 2), pos = 3)
 
 *Points: 4*
 
+::: {.callout-tip}
+4/4
+:::
+
 Suppose you conduct a survey (to generate a sample mean of interest) and find that it has a margin of error of 4.5 with a sample size of 900 using a 95% confidence interval. What would the margin of error be for a 90% confidence interval?
 
 ```{r}
@@ -151,9 +217,13 @@ z_90*se
 
 *Points: 4*
 
+::: {.callout-tip}
+4/4
+:::
+
 Assume that, in State A, the mean income in the population is \$20,000 with a standard deviation of \$2,000. If you took an SRS of 900 individuals from that population, what is the probability that you would get a sample mean income of \$20,200 or greater? What would be the probability if the sample size was only 25?
 
-We must determine the Z score first to continue. 20,000-20,000/(2000/sqrt900) gives us the z score of 900 to be 2.99. 20,000-20,000/(2000/sqrt25) gives us the z score of 25 to be 0.5. 
+We must determine the Z score first to continue. 20,000-20,000/(2000/sqrt900) gives us the z score of 900 to be 2.99. 20,000-20,000/(2000/sqrt25) gives us the z score of 25 to be 0.5.
 
 ```{r}
 probability_900 <- 1-pnorm(2.99)
@@ -173,7 +243,19 @@ Assume a normal distribution for both questions.
 
 *Points: 4*
 
+::: {.callout-tip}
+2/4
+:::
+
 Assume that a coin is fair. If I flip a coin 500 times, what is a 95% confidence interval for the range of the count of heads that I will get? What if I flip the coin 5,000 times? What about 50,000 times?
+
+::: {.callout-tip}
+The standard deviation of a binomial distribution (such as a coin flip): 
+
+$$
+\sigma_X = \sqrt{np(1-p)}
+$$
+:::
 
 ```{r}
 n_500 <- 500
@@ -216,3 +298,22 @@ Thus the 95% confidence interval if you flip a coin 500 times is 0.456 - 0.543
 The 95% confidence interval if you flip a coin 5000 times is 0.486 - 0.513
 
 The 95% confidence interval if you flip a coin 50000 times is 0.495 - 0.504
+
+::: {.callout-tip}
+Almost! The question asks for the confidence interval for the range of the *count* of heads. So, your center point should the number of heads you flipped in these trials. If you have a 50% chance of getting heads when you flip a fair coin, your expected number of heads should be 250, 2,500, and 25,000 heads from each trial. You calculate your confidence around this result. 
+
+```{r}
+library(tibble)
+
+p_head <- 0.5
+
+tibble(
+  flips = c(500, 5000, 50000),
+  expected_n_heads = flips*p_head,
+  sd = sqrt(flips*p_head*(1-p_head)),
+  lower_ci = expected_n_heads - qnorm(0.975)*sd,
+  upper_ci = expected_n_heads + qnorm(0.975)*sd
+) |> 
+  knitr::kable()
+```
+:::
