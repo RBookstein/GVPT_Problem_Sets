@@ -18,15 +18,27 @@ Please upload your completed assignment to the ELMs course site (under the assig
 
 *Points: 10*
 
+::: {.callout-tip}
+9/10
+:::
+
 I hypothesize that the mean mathematics SAT score for University of Maryland students is different than 600. I take an SRS of 625 students and find that the mean mathematics score among those students is 610. The standard deviation of my sample is 75.
 
 ### Part A
 
+::: {.callout-tip}
+2/2
+:::
+
 Based on my sample, what is a point estimate for the mean mathematics SAT score for University of Maryland students?
 
-Based on the sample provided, the point estimate for the mean mathematics SAT score for University of Maryland students is 610. 
+Based on the sample provided, the point estimate for the mean mathematics SAT score for University of Maryland students is 610.
 
 ### Part B
+
+::: {.callout-tip}
+2/2
+:::
 
 What is a 95% confidence interval around that estimate?
 
@@ -50,11 +62,19 @@ cat("95% Confidence Interval for the Mean Mathematics SAT Score at UMD:",
 
 ### Part C
 
+::: {.callout-tip}
+2/2
+:::
+
 What is the null hypothesis?
 
-The null hypothesis is the mean mathematics SAT score for University of Maryland students is equal to 600. 
+The null hypothesis is the mean mathematics SAT score for University of Maryland students is equal to 600.
 
 ### Part D
+
+::: {.callout-tip}
+1/2
+:::
 
 What is the two-tailed p-value and what does it mean?
 
@@ -75,25 +95,49 @@ p_value <- 2 * pt(-abs(t_stat), df)
 cat("Two-Tailed P-Value:", p_value, "\n")
 ```
 
+::: {.callout-tip}
+What does this mean? 
+:::
+
 ### Part E
+
+::: {.callout-tip}
+2/2
+:::
 
 Do the data support my hypothesis? Why, or why not?
 
-Based on the p-value shown above, the hypothesis is rejected. The two-tailed p-value is 0.0009088909 with a 95 percent confidence interval shows us that it would be unlikely to observe a sample mean of 610. 
+Based on the p-value shown above, the hypothesis is rejected. The two-tailed p-value is 0.0009088909 with a 95 percent confidence interval shows us that it would be unlikely to observe a sample mean of 610.
 
 ## Question 2
 
 *Points: 10*
 
+::: {.callout-tip}
+9/10
+:::
+
 I take an SRS of 900 citizens in a public opinion survey and find that the mean feeling thermometer rating (on a 0 to 100 scale) of President Biden is 51.5 with a standard deviation of 25. Now, suppose I hypothesize that feelings toward Biden should be greater than 50.
 
 ### Part A
+
+::: {.callout-tip}
+1/2
+:::
 
 What is the null hypothesis?
 
 The null hypothesis is the mean feeling thermometer rating for President Biden is equal to or less than 50.
 
+::: {.callout-tip}
+The null hypothesis must be a single point. Here, it is: the mean feeling thermometer rating for President Biden is equal to 50.
+:::
+
 ### Part B
+
+::: {.callout-tip}
+4/4
+:::
 
 What is a 95% confidence interval around the sample statistic? Does this interval indicate support for a two-tailed test of my hypothesis (`p < 0.05` as the threshold)? Why, or why not?
 
@@ -118,7 +162,12 @@ cat("95% Confidence Interval for the Mean Rating of President Biden:",
 ```
 
 The confidence interval above supports the hypothesis that feelings towards President Biden are greater than 50. Thus, there is confidence the true ratings fall between the interval of 49.87 to 53.13. The interval presented shows that we cannot reject our null hypothesis. 
+
 ### Part C
+
+::: {.callout-tip}
+4/4
+:::
 
 What is a 90% confidence interval around the sample statistic? Does this interval indicate support for a one-tailed test of my hypothesis (`p < 0.05` as the threshold)? Why, or why not?
 
@@ -142,29 +191,45 @@ cat("90% Confidence Interval for the Mean Rating of President Biden:",
     round(lower_bound, 2), "to", round(upper_bound, 2), "\n")
 ```
 
-The lower bound shows a value higher than 50 and provides support for the one-tailed hypothesis. Thus, there is 90 percent confidence that the mean rating is greater than a value of 50. 
+The lower bound shows a value higher than 50 and provides support for the one-tailed hypothesis. Thus, there is 90 percent confidence that the mean rating is greater than a value of 50.
 
 ## Question 3
 
 *Points: 5*
 
+::: {.callout-tip}
+5/5
+:::
+
 Suppose I conduct a difference of means test and obtain a t-statistic of 2.50. What does this indicate about the statistical significance of the sample mean compared to the null hypothesis?
 
-A t-statistic of 2.50 indicates there is a difference between your sample and the null hypothesis, through the terms of standard error. Showing us how many standard errors we are away from the null hypothesis. Without additional information, the t-statistic of 2.50 does not provide enough information as to the statistical significance of the sample mean in relation to the null hypothesis. 
+A t-statistic of 2.50 indicates there is a difference between your sample and the null hypothesis, through the terms of standard error. Showing us how many standard errors we are away from the null hypothesis. Without additional information, the t-statistic of 2.50 does not provide enough information as to the statistical significance of the sample mean in relation to the null hypothesis.
 
 ## Question 4
 
 *Points: 5*
 
+::: {.callout-tip}
+5/5
+:::
+
 I hypothesize that fewer than 40% of registered voters approve of President Biden. I conduct an SRS of 720 registered voters and find that 37.9% of them approve of President Biden.
 
 ### Part A
 
+::: {.callout-tip}
+1/1
+:::
+
 Based on my sample, what is a point estimate for the proportion of the population that approves of President Biden?
 
-Based on the sample, the point estimate for the proportion of the population that approves of President Biden is 37.9 percent. 
+Based on the sample, the point estimate for the proportion of the population that approves of President Biden is 37.9 percent.
 
 ### Part B
+
+::: {.callout-tip}
+1/1
+:::
 
 What is a 90% confidence interval around that estimate?
 
@@ -187,11 +252,23 @@ cat("90% Confidence Interval for the Proportion Approving of President Biden:",
 
 ### Part C
 
+::: {.callout-tip}
+0.5/1
+:::
+
 What is the null hypothesis?
 
-The null hypothesis is the proportion of registered voters who approve of President Biden is 40% or greater. 
+The null hypothesis is the proportion of registered voters who approve of President Biden is 40% or greater.
+
+::: {.callout-tip}
+See above. 
+:::
 
 ### Part D
+
+::: {.callout-tip}
+1/1
+:::
 
 What is the one-tailed p-value and what does it mean?
 
@@ -207,17 +284,25 @@ p_value <- pnorm(z, lower.tail = TRUE)
 cat("One-Tailed P-Value:", p_value, "\n")
 ```
 
-As seen above, the one-tailed p-value is 0.1250272. Based on the data the null hypothesis is not rejected. There is a lack of evidence to support the hypothesis. 
+As seen above, the one-tailed p-value is 0.1250272. Based on the data the null hypothesis is not rejected. There is a lack of evidence to support the hypothesis.
 
 ### Part E
 
+::: {.callout-tip}
+1/1
+:::
+
 Do the data support my hypothesis? Why, or why not?
 
-Based on the data above, the hypothesis is not supported. The one-tailed p-value is 0.1250272 at a 90 percent confidence value, thus the p-value is not small enough and does not provide enough statsitical evidence to accept the hypothesis. 
+Based on the data above, the hypothesis is not supported. The one-tailed p-value is 0.1250272 at a 90 percent confidence value, thus the p-value is not small enough and does not provide enough statsitical evidence to accept the hypothesis.
 
 ## Question 5
 
 *Points: 5*
+
+::: {.callout-tip}
+5/5
+:::
 
 I hypothesize that in countries where Islam is the predominate religious group, women have a greater number of children on average (i.e., the total fertility rate is higher). Use the `world` dataset to test my hypothesis. State the null hypothesis and interpret what the results tell us about the null and alternative hypotheses. Be sure to show all work necessary to find the answer (i.e., you may use R to assist you, but you should show the necessary computations by hand).
 
@@ -228,7 +313,7 @@ The `world` data set can be found in `poliscidata::world`.
 ```{r}
 library(tidyverse)
 library(dplyr)
-poliscidata::world
+# poliscidata::world
 
 world <- poliscidata::world|>
   mutate(group_religion = ifelse(religoin == "Muslim", "Muslim", "non_Muslim"))
@@ -250,8 +335,8 @@ z_t_stat_5 <- (p_hat_5 - p_0_5) / sqrt(p_0_5 * (1 - p_0_5) / sample_size_religio
 p_value_5 <- pnorm(z_t_stat_5)  
 
 cat("One-tailed p-value:", p_value_5)  
-```  
+```
 
-The null hypothesis is in countries where Muslim is the predominant religion, the total fertility rate is equal or less than the total fertility rate in countries where Muslim in not the predominant religious group. 
+The null hypothesis is in countries where Muslim is the predominant religion, the total fertility rate is equal or less than the total fertility rate in countries where Muslim in not the predominant religious group.
 
-The one-tailed p-value is 4.675515e-36. The value presented is small and is evident against the claims of the null hypothesis. This value shows that with a different sample population, it is unlikely to see this data if there was not a difference in the average amount of children. Because of this, the null hypothesis can be rejected and shows that an alternative hypothesis such as total fertility rate is higher in countries where Muslim is the predominant religious group could be accepted. 
+The one-tailed p-value is 4.675515e-36. The value presented is small and is evident against the claims of the null hypothesis. This value shows that with a different sample population, it is unlikely to see this data if there was not a difference in the average amount of children. Because of this, the null hypothesis can be rejected and shows that an alternative hypothesis such as total fertility rate is higher in countries where Muslim is the predominant religious group could be accepted.
