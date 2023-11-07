@@ -27,6 +27,37 @@ I hypothesize that the older someone is, the more they like watching golf. I con
 Make a cross-tab, by hand, of the relationship between these two variables based on the following (completely made up) data. Make sure that you present both raw counts and the appropriate percentages to examine the relationship.
 
 ![](img/PS7.png)
++-----------------+----------------+----------------+----------------+----------------+
+| Age             | Not at all     | Somewhat       | Very much      | Row total      |
++=================+================+================+================+================+
+| 21-35           | 5 (45.45%)     | 6 (35.29%)     | 1 (8.33%)      | 12             |
+|                 |                |                |                |                |
+|                 | (ex: 3.3)      | (ex: 5.1)      | (ex: 3.6)      |                |
+|                 |                |                |                |                |
+|                 | chisq=(0.8758) | chisq=(0.1588) | chisq=(1.8778) |                |
++-----------------+----------------+----------------+----------------+----------------+
+| 36-50           | 1 (9.09%)      | 5 (29.41%)     | 3 (25%)        | 9              |
+|                 |                |                |                |                |
+|                 | (ex: 2.475)    | (ex: 3.825)    | (ex: 2.7)      |                |
+|                 |                |                |                |                |
+|                 | chisq=(0.8790) | chisq=(0.3609) | chisq=(0.033)  |                |
++-----------------+----------------+----------------+----------------+----------------+
+| 51-65           | 2 (18.18%)     | 2 (11.76)      | 4 (33.33%)     | 8              |
+|                 |                |                |                |                |
+|                 | (ex: 2.2)      | (ex: 3.4)      | (ex: 2.4)      |                |
+|                 |                |                |                |                |
+|                 | chisq=(0.0181) | chisq=(0.5765) | chisq=(1.0667) |                |
++-----------------+----------------+----------------+----------------+----------------+
+| 66+             | 3 (27.27%)     | 4 (23.53%)     | 4 (33.33%)     | 11             |
+|                 |                |                |                |                |
+|                 | (ex: 3.025)    | (ex: 4.675)    | (ex: 3.3)      |                |
+|                 |                |                |                |                |
+|                 | chisq=(0.0002) | chisq=(0.0975) | chisq=(0.1485) |                |
++-----------------+----------------+----------------+----------------+----------------+
+| Column total    | 11 (100%)      | 17 (100%)      | 12 (100%)      | 40             |
+|                 |                |                |                |                |
+|                 |                |                |                | chisq=(6.2568) |
++--------------------------------------------------------------------------------------
 
 ### Part B
 
@@ -34,17 +65,43 @@ Make a cross-tab, by hand, of the relationship between these two variables based
 
 Do the data support my hypothesis? Be sure to explain the nature of the relationship (or lack thereof, if relevant).
 
+Based on the data above, the hypothesis can be supported. Based on the cross tab we can see as you get older, the data shows you are more likely to watch golf. 
+
 ### Part C
 
 *Points: 2*
 
 Compute (by hand) the chi-square statistic to test the null hypothesis of no relationship between these two variables. Be sure to show your work.
 
+Math for chi-square statistic:
+
+21-35
+Not at All: (11*12)/40 = 3.3 (5-3.3)^2/3.3 = 0.875
+Somewhat: (17*12)/40 = 5.1 (6-5.1)^2/5.1 = 0.159
+Very Much: (12*12)/40 = 3.6 (1-3.6)^2/3.6 = 1.87
+
+36-50
+Not at All: (11*9)/40 = 2.48 (1-2.48)^2/2.48 = 0.88
+Somewhat: (17*9)/40 = 3.83 (5-3.83)^2/3.83 = 0.36
+Very Much: (12*9)/40 = 2.7 (3-2.7)^2/2.7 = 0.03
+
+51-65
+Not at All: (11*8)/40 = 2.2 (2-2.2)^2/2.2 = 0.018
+Somewhat: (17*8)/40 = 3.4 (2-3.4)^2/3.4 = 0.576
+Very Much: (12*8)/40 = 2.4 (4-2.4)^2/2.4 = 1.066667
+
+66+
+Not at All: (11*11)/40 = 3.025 (3-3.025)^2/3.025 = 0.0002
+Somewhat: (17*11)/40 = 4.675 (4-4.675)^2/4.675 = 0.0974
+Very Much: (12*11)/40 = 3.3 (4-3.3)^2/3.3 = 0.1484
+
 ### Part D
 
 *Points: 2*
 
 Using the chi-square statistic that you computed in question 1(c), can you reject the null hypothesis of no relationship between these two variables with 95% confidence? Why, or why not?
+
+Based on the chi-square statistic of 6.2568 and df = 6, the null hypothesis cannot be rejected because the chi-square value is less than the critical rejection value. We can reject the two variables with 95 percent confidence because the rejection value is 12.59. 
 
 ## Question 2
 
@@ -53,3 +110,14 @@ Using the chi-square statistic that you computed in question 1(c), can you rejec
 I hypothesize that people who identify as more liberal are less likely to see gun control as an important issue than people who identify as more conservative. Using the `nes` dataset from the `poliscidata` package, create a cross-tab examining the effect of someone's self-identification as liberal or conservative, measured using the variable `libcon3` variable, and their indication of how important gun access is to them as an issue, measured using the `gun_importance3` variable.
 
 Do the data support my hypothesis? Be sure to explain the nature of the relationship (or lack thereof, if relevant). Report a chi-square statistic (it is fine to have R generate the statistic and p-value). What does the chi-square statistic tell you about whether you can reject the null hypothesis of no relationship between these two variables with 95% confidence? Why, or why not?
+
+```{r}
+library(poliscidata)
+library(modelsummary)
+
+datasummary_crosstab(libcon3 ~ gun_importance3, data = nes)
+
+chisq.test(nes$libcon3, nes$gun_importance3)
+```
+
+Based on the data seen above, the chi-square statistic is 40.105 with a p-value of 0.00000000118 at a 95% confidence interval. Based on this information, the null hypothesis of association between liberal/conservative identification and gun access can be rejected. There is no significant relationship between the variables, the 95% confidence interval with an extremely low p-value. As seen in the data above the original can be rejected, as 37 percent of liberals believe gun control is more important compared to 33 percent supporting the claim of gun control being more important. This finding rejects the original hypothesis that people who identify as liberal are less likely to support gun control as an important issue when compared to those with a conservative identification. 
